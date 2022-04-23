@@ -23,5 +23,5 @@ app.get('/productoRandom', (req, res) => {
   let idRandom =  Math.floor(Math.random() * (4 - 1) + 1)
   console.log(idRandom)
   let p = c1.getById(idRandom)
-  res.send('Producto Random  ' + `${'id: '+p.id+"\n"+'titulo: ',p.title,"\n" }`)
+  res.send('Producto Random  ' + `${'id: '+p.id+'\n'+'titulo: '+p.title+"\n" }`)
 })
