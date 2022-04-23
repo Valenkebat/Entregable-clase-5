@@ -2,9 +2,8 @@ const express = require('express')
 const Contenedor = require('./products')
 
 
-let fileName  = './productos.txt'
-
-let c1 = new Contenedor(`${__dirname,fileName}`)
+const fileName  = './productos.txt'
+const c1 = new Contenedor(`${__dirname,fileName}`)
 
 const PORT = 8080
 
@@ -15,7 +14,8 @@ console.log('Servidor HTTP escuchando en el puerto ' + PORT)
 })
 
 app.get('/productos', (req, res) => {
-  res.send(c1.getAll())
+  const arr = c1.getAll()
+  res.send(arr)
 })
 
 let cantVisitas = 0
