@@ -8,24 +8,19 @@ class Contenedor {
     this.init();
   }
 
-  init() {
-    let file = this.fileName;
-    try {
-      let data = fs.readFileSync(file,'utf-8', err =>{
-          if(err){
-              console.log('Archivo vacío')
-          }else{
-            this.content = data
-            for (const element of this.content) {
-                if (element.id > this.countID) this.countID = element.id;
-              }
-              console.log('archivo cargado')
-          }
-      });
-    } catch (err) {
-      console.log("No existe el archivo: ", err);
+   init() {
+        let file = this.fileName
+        try {
+			let data = fs.readFileSync(file);
+			this.content = JSON.parse(data);
+            console.log(data)
+			for (const element of this.content) {
+				if (element.id > this.countID) this.countID = element.id;
+			}
+		} catch (error) {
+			console.log('Aún no hay archivo');
+		}
     }
-  }
 
   async write() {
     try {
@@ -84,17 +79,13 @@ class Contenedor {
 
   deleteAll() {
     this.content = [];
-       fs.writeFileSync(
-        this.fileName,
-        JSON.stringify(this.content),
-        err => {
-            if(err){
-                console.log('Error al Borrar: ', err)
-            }else{
-                console.log("Todos los Productos han sido borrados");
-            }
-        }
-      );
+    fs.writeFileSync(this.fileName, JSON.stringify(this.content), (err) => {
+      if (err) {
+        console.log("Error al Borrar: ", err);
+      } else {
+        console.log("Todos los Productos han sido borrados");
+      }
+    });
   }
 }
 
