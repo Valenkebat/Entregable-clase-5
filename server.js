@@ -20,11 +20,8 @@ app.get('/productos', (req, res) => {
 
 
 app.get('/productoRandom', (req, res) => {
- 
-  let cantVisitas = c1.getById(1)
+  let idRandom =  Math.floor(Math.random() * (4 - 1) + 1)
+  console.log(idRandom)
+  let p = c1.getById(idRandom)
   res.send('La  ' + cantVisitas)
 })
-
-app.get('/fyh', (req, res) => {
-res.send({fechayhora: new Date().toLocaleString()})
-}) 
